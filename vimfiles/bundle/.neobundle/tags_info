@@ -11,6 +11,7 @@ bufexplorer.zip
 cSyntaxAfter
 ccvext.vim
 command-t
+ctrlp.vim
 html5.vim
 jQuery
 jsbeautify
@@ -20,7 +21,6 @@ neocomplcache
 neosnippet
 nerdcommenter
 nerdtree
-php.vim-html-enhanced
 pyflakes-vim
 repeat.vim
 snipmate.vim
@@ -28,13 +28,12 @@ std_c.zip
 syntastic
 tagbar
 taglist
-tlib_vim
-unite
-vim-addon-mw-utils
 vim-airline
 vim-fugitive
 vim-javascript
 vim-less
+vim-markdown
 vim-surround
 vimproc
+xptemplate
 zencoding-vim

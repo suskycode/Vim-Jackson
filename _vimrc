@@ -132,11 +132,11 @@ NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'bufexplorer.zip'
 NeoBundle 'ccvext.vim'
 NeoBundle 'vim-scripts/cSyntaxAfter'
-"NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'breestealth/Mark-Karkat'
 " NeoBundle 'minibufexpl.vim'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'FromtonRouge/OmniCppComplete'
 NeoBundle 'repeat.vim'
 NeoBundle 'msanders/snipmate.vim'
@@ -153,31 +153,31 @@ NeoBundle 'ZoomWin'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'mattn/zencoding-vim'
-"NeoBundle 'drmingdrmer/xptemplate'
+NeoBundle 'drmingdrmer/xptemplate'
 
 "代码补全
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 "代码段自动生成
 
-NeoBundle "MarcWeber/vim-addon-mw-utils"
-NeoBundle "tomtom/tlib_vim"
+"NeoBundle "MarcWeber/vim-addon-mw-utils"
+"NeoBundle "tomtom/tlib_vim"
 
 "插件 语法/高亮
 NeoBundle 'JavaScript-syntax'
 NeoBundle 'jQuery'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'groenewege/vim-less'
-"NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'jslint.vim'
 NeoBundle 'jsbeautify'
 
-NeoBundle 'php.vim-html-enhanced'
+"NeoBundle 'php.vim-html-enhanced'
 "HTML混排缩进改善
 NeoBundle "pangloss/vim-javascript"
 
 " [Unite]
-NeoBundle 'Shougo/unite.vim' , { 'name' : 'unite' }
+"NeoBundle 'Shougo/unite.vim' , { 'name' : 'unite' }
 
 "Pyhone语法检查
 NeoBundle 'kevinw/pyflakes-vim'
@@ -311,8 +311,45 @@ set cuc
 set ruler           " 显示标尺  
 set showcmd         " 输入的命令显示出来，看的清楚些
 
+set lbr
+set fo+=mB
+set sm
+set selection=inclusive
+set mousemodel=popup
 
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容  
+if !g:iswindows
+    au FileType php setlocal dict+=~/.vim/dict/php_funclist.dict
+    au FileType css setlocal dict+=~/.vim/dict/css.dict
+    au FileType c setlocal dict+=~/.vim/dict/c.dict
+    au FileType cpp setlocal dict+=~/.vim/dict/cpp.dict
+    au FileType scale setlocal dict+=~/.vim/dict/scale.dict
+    au FileType javascript setlocal dict+=~/.vim/dict/javascript.dict   
+else
+    au FileType php setlocal dict+=$VIM/vimfiles/dict/php_funclist.dict
+    au FileType css setlocal dict+=$VIM/vimfiles/dict/css.dict
+    au FileType c setlocal dict+=$VIM/vimfiles/dict/c.dict
+    au FileType cpp setlocal dict+=$VIM/vimfiles/dict/cpp.dict
+    au FileType scale setlocal dict+=$VIM/vimfiles/dict/scale.dict
+    au FileType javascript setlocal dict+=$VIM/vimfiles/dict/javascript.dict         
+endif
+
+"
+"syntastic相关
+execute pathogen#infect()
+let g:syntastic_python_checkers=['pylint']
+let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+"golang
+"Processing... % (ctrl+c to stop)
+let g:fencview_autodetect=0
+set rtp+=$GOROOT/misc/vim
+
+
+set autochdir       "自动切换工作目录，以当前打开的文件所在目录为准  
+"定义工作目录  
+let g:Source="D:/code/"  
+
+"状态行显示的内容  
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
 
 " 个性化状栏（这里提供两种方式，要使用其中一种去掉注释即可，不使用反之）
 " let &statusline=' %t %{&mod?(&ro?"*":"+"):(&ro?"=":" ")} %1*|%* %{&ft==""?"any":&ft} %1*|%* %{&ff} %1*|%* %{(&fenc=="")?&enc:&fenc}%{(&bomb?",BOM":"")} %1*|%* %=%1*|%* 0x%B %1*|%* (%l,%c%V) %1*|%* %L %1*|%* %P'
@@ -588,25 +625,6 @@ let g:use_zen_complete_tag = 1
 " 高亮括号与运算符等
 au! BufRead,BufNewFile,BufEnter *.{c,cpp,h,javascript} call CSyntaxAfter()
 
-" -----------------------------------------------------------------------------
-"  < indentLine 插件配置 >
-" -----------------------------------------------------------------------------
-" 用于显示对齐线，与 indent_guides 在显示方式上不同，根据自己喜好选择了
-" 在终端上会有屏幕刷新的问题，这个问题能解决有更好了
-" 开启/关闭对齐线
-"nmap <leader>il :IndentLinesToggle<CR>
-
-" 设置Gvim的对齐线样式
-"if g:isGUI
-"    let g:indentLine_char = "┊"
-"    let g:indentLine_first_char = "┊"
-"endif
-
-" 设置终端对齐线颜色
-" let g:indentLine_color_term = 239
-"
-" 设置 GUI 对齐线颜色
-" let g:indentLine_color_gui = '#A4E57E'
 
 " -----------------------------------------------------------------------------
 "  < Mark--Karkat（也就是 Mark） 插件配置 >
