@@ -16,6 +16,7 @@ html5.vim
 jQuery
 jsbeautify
 jslint.vim
+minibufexpl.vim
 neobundle.vim
 neocomplcache
 neosnippet

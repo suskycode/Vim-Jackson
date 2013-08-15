@@ -4,5 +4,5 @@ Windows Registry Editor Version 5.00
 @="Vim"
 
 [HKEY_CLASSES_ROOT\*\Shell\Vim\command]
-@="\"D:\\Editor\\Vim\\vim74a\\gvim.exe\" \"%1\""
+@="\"D:\\Editor\\Vim\\vim74\\gvim.exe\" \"%1\""
 

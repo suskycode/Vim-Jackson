@@ -160,8 +160,8 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 "代码段自动生成
 
-"NeoBundle "MarcWeber/vim-addon-mw-utils"
-"NeoBundle "tomtom/tlib_vim"
+"NeoBundle 'MarcWeber/vim-addon-mw-utils'
+"NeoBundle 'tomtom/tlib_vim'
 
 "插件 语法/高亮
 NeoBundle 'JavaScript-syntax'
@@ -174,7 +174,9 @@ NeoBundle 'jsbeautify'
 
 "NeoBundle 'php.vim-html-enhanced'
 "HTML混排缩进改善
-NeoBundle "pangloss/vim-javascript"
+NeoBundle 'pangloss/vim-javascript'
+
+NeoBundle 'fholgado/minibufexpl.vim'
 
 " [Unite]
 "NeoBundle 'Shougo/unite.vim' , { 'name' : 'unite' }
@@ -222,8 +224,7 @@ endif
 "  < 编写文件时的配置 >
 " -----------------------------------------------------------------------------
 filetype on                                           "启用文件类型侦测
-filetype plugin on                                    "针对不同的文件类型加载对应的插件
-filetype plugin indent on                             "启用缩进
+filetype plugin on                                    
 set smartindent                                       "启用智能对齐方式
 set expandtab                                         "将Tab键转换为空格
 set tabstop=4                                         "设置Tab键的宽度
@@ -335,7 +336,7 @@ endif
 
 "
 "syntastic相关
-execute pathogen#infect()
+"execute pathogen#infect()
 let g:syntastic_python_checkers=['pylint']
 let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
 "golang
@@ -783,6 +784,7 @@ let g:tagbar_width=30                       "设置窗口宽度
 " 常规模式下输入 tl 调用插件，如果有打开 Tagbar 窗口则先将其关闭
 nmap tl :TagbarClose<cr>:Tlist<cr>
 
+let Tlist_Ctags_Cmd='ctags'
 let Tlist_Show_One_File=1                   "只显示当前文件的tags
 " let Tlist_Enable_Fold_Column=0              "使taglist插件不显示左边的折叠行
 let Tlist_Exit_OnlyWindow=1                 "如果Taglist窗口是最后一个窗口则退出Vim
