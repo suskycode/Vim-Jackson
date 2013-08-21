@@ -116,7 +116,7 @@ set nocompatible                                      "禁用 Vi 兼容模式
 
 if !g:iswindows
     set rtp+=~/.vim/bundle/neobundle.vim/
-    call neobundle#rc()
+    call neobundle#rc(expand('~/.vim/bundle/'))
 else
     set rtp+=$VIM/vimfiles/bundle/neobundle.vim/
     call neobundle#rc('$VIM/vimfiles/bundle/')
@@ -158,6 +158,7 @@ NeoBundle 'drmingdrmer/xptemplate'
 
 "代码补全
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Shougo/neosnippet'
 "代码段自动生成
 
@@ -187,7 +188,7 @@ NeoBundle 'kevinw/pyflakes-vim'
 
 " non github reposo
 " 非github的插件，可以直接使用其git地址
-NeoBundle 'git://git.wincent.com/command-t.git'
+"NeoBundle 'git://git.wincent.com/command-t.git'
 
 filetype plugin indent on     " required!
 
@@ -313,7 +314,7 @@ if version >= 603
     set helplang=cn
     set encoding=utf-8
 endif
-set cul "高亮光标所在行
+set cul             "高亮光标所在行
 set cuc
 set ruler           " 显示标尺  
 set showcmd         " 输入的命令显示出来，看的清楚些
@@ -343,12 +344,12 @@ endif
 "
 "syntastic相关
 "execute pathogen#infect()
-let g:syntastic_python_checkers=['pylint']
-let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+"let g:syntastic_python_checkers=['pylint']
+"let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
 "golang
 "Processing... % (ctrl+c to stop)
-let g:fencview_autodetect=0
-set rtp+=$GOROOT/misc/vim
+"let g:fencview_autodetect=0
+"set rtp+=$GOROOT/misc/vim
 
 
 set autochdir       "自动切换工作目录，以当前打开的文件所在目录为准  
