@@ -5,7 +5,7 @@
 " -----------------------------------------------------------------------------
 "  < 判断操作系统是否是 Windows 还是 Linux >
 " -----------------------------------------------------------------------------
-if(has("win32") || has("win64") || has("win95") || has("win16"))
+if(has("win32") || has("win64") )
     let g:iswindows = 1
 else
     let g:iswindows = 0
@@ -33,6 +33,7 @@ if (g:iswindows && g:isGUI)
     source $VIMRUNTIME/mswin.vim
     behave mswin
     set diffexpr=MyDiff()
+    set showtabline=2     "标签页
 
     function MyDiff()
         let opt = '-a --binary '
@@ -137,7 +138,7 @@ NeoBundle 'breestealth/Mark-Karkat'
 NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'FromtonRouge/OmniCppComplete'
+"NeoBundle 'FromtonRouge/OmniCppComplete'
 NeoBundle 'repeat.vim'
 NeoBundle 'msanders/snipmate.vim'
 NeoBundle 'wesleyche/SrcExpl'
@@ -286,7 +287,12 @@ set laststatus=2                                      "启用状态栏信息
 set cmdheight=2                                       "设置命令行的高度为2，默认为1
 set linespace=0                                      " 增强模式中的命令行自动完成操作
 set cursorline                                        "突出显示当前行
-set guifont=YaHei_Consolas_Hybrid:h12                 "设置字体:字号（字体名称空格用下划线代替）
+if g:iswindows
+    set guifont=YaHei_Consolas_Hybrid:h12                 "设置字体:字号（字体名称空格用下划线代替）
+else
+    set guifont=YaHei\ Consolas\ Hybrid\ 12
+endif
+
 set wrap                                            "设置自动折行
 "set textwidth=80                                    "80个字自动换行
 set shortmess=atI                                     "去掉欢迎界面
@@ -703,14 +709,29 @@ set t_Co=256
 "set ambiwidth=double
 set noshowmode
 
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_fugitive_prefix = ' '
-let g:airline_readonly_symbol = ''
-let g:airline_linecolumn_prefix = ' '
+if g:iswindows
+    " powerline symbols
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_fugitive_prefix = ' '
+    let g:airline_readonly_symbol = ''
+    let g:airline_linecolumn_prefix = ' '
+else
+    " unicode symbols
+    let g:airline_left_sep = '»'
+    let g:airline_left_sep = '▶'
+    let g:airline_right_sep = '«'
+    let g:airline_right_sep = '◀'
+    let g:airline_linecolumn_prefix = '␊ '
+    let g:airline_linecolumn_prefix = '␤ '
+    let g:airline_linecolumn_prefix = '¶ '
+    let g:airline_fugitive_prefix = '⎇ '
+    let g:airline_paste_symbol = 'ρ'
+    let g:airline_paste_symbol = 'Þ'
+    let g:airline_paste_symbol = '∥'
+endif
 
 " -----------------------------------------------------------------------------
 "  < repeat 插件配置 >
